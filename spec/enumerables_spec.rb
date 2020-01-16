@@ -1,15 +1,10 @@
-#frozen_string_literal: true
-
 require_relative '../enumerable'
 
 RSpec.describe Enumerable do
-
   let(:array) { [1, 2, 3, 4] }
   let(:array_new) { [] }
 
-
   context '#my_each' do
-  
     it 'iterates through an iterable object' do
       array.my_each { |x| array_new.push(x) }
       expect(array_new).to eql([1, 2, 3, 4])
@@ -22,9 +17,8 @@ RSpec.describe Enumerable do
   end
 
   context '#my_each_with_index' do
-
     it 'iterates through an iterable object and return current index' do
-      array.my_each_with_index { |x, i| array_new.push(i) }
+      array.my_each_with_index { |_x, i| array_new.push(i) }
       expect(array_new).to eql([0, 1, 2, 3])
     end
 
@@ -35,20 +29,18 @@ RSpec.describe Enumerable do
   end
 
   context '#my_select' do
-
     it 'select a specific values' do
-      array.my_select { |x| array_new.push(x) if x.is_a? Integer }  
+      array.my_select { |x| array_new.push(x) if x.is_a? Integer }
       expect(array_new).to eql([1, 2, 3, 4])
     end
 
     it 'return all the even values' do
-      array.my_select { |x| array_new.push x if x.even? }  
+      array.my_select { |x| array_new.push x if x.even? }
       expect(array_new).to eql([2, 4])
     end
   end
 
   context '#my_all' do
-
     it 'check if any of the values are nil or false' do
       expect(array.my_all).to eql(true)
     end
@@ -59,7 +51,6 @@ RSpec.describe Enumerable do
   end
 
   context '#my_any' do
-
     it 'check if an array at least has a true value' do
       expect(array.my_any).to eql(true)
     end
@@ -74,7 +65,6 @@ RSpec.describe Enumerable do
   end
 
   context '#my_none' do
-
     it 'check if all the elements are false or nil' do
       expect(array.my_none).to eql(false)
     end
@@ -89,7 +79,6 @@ RSpec.describe Enumerable do
   end
 
   context '#my_count' do
-
     it 'counts all the elements of an array' do
       expect(array.my_count).to eql(4)
     end
@@ -104,14 +93,12 @@ RSpec.describe Enumerable do
   end
 
   context '#my_map' do
-
     it 'accepts a block and apply it to all the elements of an array' do
       expect(array.my_map { |x| x * 10 }).to eql([10, 20, 30, 40])
     end
   end
 
   context '#my_inject' do
-
     it 'accumulate all the values of an array' do
       expect(array.my_inject(0) { |x, y| x + y }).to eql(10)
     end
@@ -119,6 +106,5 @@ RSpec.describe Enumerable do
     it 'accumulate the product of all the elements of an array' do
       expect(array.my_inject(1) { |x, y| x * y }).to eql(24)
     end
-
   end
 end
