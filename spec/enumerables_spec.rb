@@ -1,6 +1,6 @@
-require_relative '../enumerable'
+require_relative '../enumerables'
 
-RSpec.describe Enumerable do
+RSpec.describe Enumerables do
   let(:array) { [1, 2, 3, 4] }
   let(:array_new) { [] }
 
